@@ -1,56 +1,104 @@
 package csc300hmwk;
 
 import java.util.Scanner;
-import java.util.Stack;
+
 
 public class reversepolish 
 
 {
 
-	private Stack theSack; 
+	private stack theStack; 
 
 
 	public reversepolish()
 	{
-		this.theSack = new Stack(); 
+		this.theStack = new stack(); 
 	}
-	private boolean isNum(String s)
+	
+	private boolean isNumber(String s)
 	{
-		String map = "0123456789";
-		if(s.charAt(0) == '+' || s.charAt(0) == '-')
+		try 
 		{
-			s = s.substring(1); 
+			Integer.parseInt(s);
 		}
-		for(int i = 0; i <s.length(); i++)
+		catch(Exception e)
 		{
-			if(map.indexOf(s.charAt(i)) == -1)
-			{
-				return false; 
-			}
+			return false; 
 		}
 		return true; 
 	}
-	private boolean isNumber(String s)
+	
+	private boolean isOperator(String s)
 	{
-		
+		String map = "+-*/";
+		return map.indexOf(s) != -1 && s.length() == 1; 
 	}
+	
 
-	public void on()
+	public void on() throws Exception
 	{
-		Scanner input = new Scanner(System.in); 
+		Scanner input = new Scanner(System.in);
+		
 		while(true)
 		{
-			System.out.print("+> ");
-			String val = input.nextLine(); 
+			System.out.print("=> ");
+			String val = input.nextLine().trim(); 
 			if(val.equalsIgnoreCase("quit"))
 			{
 				break; 
 			}
-			else if()
+			else if(val.equalsIgnoreCase("show"))
 			{
-
+				if(this.theStack.isEmpty())
+				{
+					System.out.println("empty stack");
+					continue; 
+				}
+				stack temp = new stack(); 
+				while(!this.theStack.isEmpty())
+				{
+					temp.pushstack(this.theStack.isEmpty());
+				}
+				while(!temp.isEmpty())
+					{
+					int num = temp.popstack(); 
+					System.out.println(num);
+					this.theStack.pushstack(num);
+					
+				}
+				
 			}
-			System.out.println(val);
+			else if(this.isNumber(val))
+			{
+				this.theStack.pushstack(Integer.parseInt(val)); 
+			}
+			else if(this.isOperator(val))
+			{
+				int num1 = this.theStack.popstack();
+				int num2 = this.theStack.popstack();
+				if(val.equals("+"))
+				{
+					this.theStack.pushstack(num1 + num2); 
+				}
+				else if(val.equals("-"))
+				{
+					this.theStack.pushstack(num1 - num2);
+				}
+				else if(val.equals("*"))
+				{
+					this.theStack.pushstack(num1 * num2);
+				}
+				else if(val.equals("/"))
+				{
+					this.theStack.pushstack(num1 / num2);
+				}
+			}
+			else
+			{
+				System.out.println("Illegal Input");
+			}
+
+				System.out.println(val);
 
 		}
 	}

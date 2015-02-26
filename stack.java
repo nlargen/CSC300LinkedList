@@ -23,6 +23,10 @@ public class stack {
 		}
 		this.count++;
 	}
+	public boolean isEmpty()
+	{
+		
+	}
 	public int popstack() throws Exception
 	{
 		if(head == null)

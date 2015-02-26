@@ -11,13 +11,12 @@ public class Driver {
 		ll.pushstack(9);
 		ll.popstack();
 		ll.peekstack();
-		//ll.addFront(3);
-		//ll.addFront(5);
-		//ll.addFront(9);
-		//ll.display();
-		//ll.displayInReverse();
 		
-		reversepolish 
+		
+		
+		// Begin portion for stack control
+		reversepolish theCalc = new reversepolish(); 
+		theCalc.on();
 		
 	}
 
