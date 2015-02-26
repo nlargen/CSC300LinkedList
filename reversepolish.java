@@ -57,40 +57,43 @@ public class reversepolish
 				stack temp = new stack(); 
 				while(!this.theStack.isEmpty())
 				{
-					temp.pushstack(this.theStack.isEmpty());
+					temp.push(this.theStack.pop());
 				}
 				while(!temp.isEmpty())
 					{
-					int num = temp.popstack(); 
+					int num = temp.pop(); 
 					System.out.println(num);
-					this.theStack.pushstack(num);
+					this.theStack.push(num);
 					
 				}
 				
 			}
 			else if(this.isNumber(val))
 			{
-				this.theStack.pushstack(Integer.parseInt(val)); 
+				this.theStack.push(Integer.parseInt(val)); 
 			}
 			else if(this.isOperator(val))
 			{
-				int num1 = this.theStack.popstack();
-				int num2 = this.theStack.popstack();
+				int num1 = this.theStack.pop();
+				int num2 = this.theStack.pop();
+				while(val.equalsIgnoreCase("sum"))
+				{
 				if(val.equals("+"))
 				{
-					this.theStack.pushstack(num1 + num2); 
+					this.theStack.push(num1 + num2); 
 				}
-				else if(val.equals("-"))
+				}
+				if(val.equals("-"))
 				{
-					this.theStack.pushstack(num1 - num2);
+					this.theStack.push(num1 - num2);
 				}
 				else if(val.equals("*"))
 				{
-					this.theStack.pushstack(num1 * num2);
+					this.theStack.push(num1 * num2);
 				}
 				else if(val.equals("/"))
 				{
-					this.theStack.pushstack(num1 / num2);
+					this.theStack.push(num1 / num2);
 				}
 			}
 			else
@@ -99,8 +102,9 @@ public class reversepolish
 			}
 
 				System.out.println(val);
-
+			
 		}
+			
 	}
 
 }

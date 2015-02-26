@@ -1,90 +1,54 @@
 package csc300hmwk;
 
 public class stack {
-	private Node head; 
-	private Node tail; 
-	private int count; 
-	
-	public void pushstack(int payload) throws Exception 
+	private Node top; 
+	public stack()
 	{
-
-		Node n = new Node(payload);
-		if(this.head == null)
-		{
-			this.head = n;
-			this.tail = n; 
-		}
-		else
-		{
-			
-			this.tail.setNextNode(n); 
-			n.setPrevNode(tail); 
-			this.tail = n; 
-		}
-		this.count++;
+		this.top = null; 
 	}
+	
 	public boolean isEmpty()
 	{
-		
+		return this.top == null; 
 	}
-	public int popstack() throws Exception
+	
+	public void push(int payload)
 	{
-		if(head == null)
+		Node n = new Node(payload); 
+		if(this.top == null)
 		{
-			throw new Exception("The list is empty!");
-		}
-		else if(this.count == 1)
-		{
-			return this.removeFront();
-		}
-		else
-		{
-			Node curr = tail; 
-			tail = curr.getPrevNode(); 
-			curr.setPrevNode(null);
-			tail.setNextNode(null);
-			this.count--; 
-			return curr.getPayload(); 
-		}
-	}
-	public int peekstack() throws Exception 
-	{
-		Node currNode = tail;  
-		if(head == null)
-		{
-			System.out.println("Empty List");
+			this.top = n; 
 		}
 		else 
 		{
-			
-		System.out.println(currNode.getPayload());
-		
+			n.setNextNode(this.top);
+			this.top = n; 
 		}
-		return currNode.getPayload(); 
-		}
-	public int removeFront() throws Exception
+	}
+	public int pop() throws Exception 
 	{
-		if(head == null)
+		if(this.top == null)
 		{
-			throw new Exception("The list is empty!");
-		}
-		else if (this.count == 1)
-		{
-			int payloadToReturn = this.head.getPayload(); 
-			this.head = null; 
-			this.tail = null; 
-			this.count = 0; 
-			return payloadToReturn; 
+			throw new Exception("This stack is empty");
 			
 		}
-		else
+		else 
 		{
-			Node curr = head; 
-			curr.getNextNode().setPrevNode(null); 
-			head = curr.getNextNode();
-			curr.setNextNode(null);
-			this.count--; 
-			return curr.getPayload(); 
+			int valToReturn = this.top.getPayload(); 
+			this.top = this.top.getNextNode(); 
+			return valToReturn; 
+		}
+	}
+	public int peek() throws Exception 
+	{
+		if(this.top == null)
+		{
+			throw new Exception("Hey the stack is empty add a goat!");
+			
+		}
+		else 
+		{
+			return this.top.getPayload(); 
 		}
 	}
 }
