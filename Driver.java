@@ -8,6 +8,7 @@ public class Driver {
 		ll.pushstack(1);
 		ll.pushstack(4);
 		ll.pushstack(7);
+		ll.pushstack(9);
 		ll.popstack();
 		ll.peekstack();
 		//ll.addFront(3);

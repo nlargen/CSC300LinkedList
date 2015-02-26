@@ -43,18 +43,20 @@ public class stack {
 			return curr.getPayload(); 
 		}
 	}
-	public void peekstack() throws Exception 
+	public int peekstack() throws Exception 
 	{
+		Node currNode = tail;  
 		if(head == null)
 		{
 			System.out.println("Empty List");
 		}
 		else 
 		{
-			Node currNode = tail;  
+			
 		System.out.println(currNode.getPayload());
-		}
 		
+		}
+		return currNode.getPayload(); 
 		}
 	public int removeFront() throws Exception
 	{
