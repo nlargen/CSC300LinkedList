@@ -12,7 +12,7 @@ public class stack {
 		return this.top == null; 
 	}
 	
-	public void push(int payload)
+	public void push(int payload) 
 	{
 		Node n = new Node(payload); 
 		if(this.top == null)

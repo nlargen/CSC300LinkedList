@@ -8,13 +8,13 @@ public class reversepolish
 {
 
 	private stack theStack; 
-
+	private int count; 
 
 	public reversepolish()
 	{
 		this.theStack = new stack(); 
 	}
-	
+
 	private boolean isNumber(String s)
 	{
 		try 
@@ -27,18 +27,43 @@ public class reversepolish
 		}
 		return true; 
 	}
-	
+
 	private boolean isOperator(String s)
 	{
 		String map = "+-*/";
 		return map.indexOf(s) != -1 && s.length() == 1; 
 	}
-	
+	public void sum() throws Exception 
+	{
+
+		for(int i = 0; i < this.stacksize()-1; i++)
+		{
+			int num1 = this.theStack.pop();
+			int num2 = this.theStack.pop();
+			this.theStack.push(num1 + num2);
+		}
+		System.out.println(this.theStack.peek());
+		
+	}
+	public int stacksize() throws Exception
+	{
+		stack temp = new stack(); 
+		do
+		{
+			
+			temp.push(this.theStack.pop());
+			count++;
+			 
+		}
+		while(!this.theStack.isEmpty());
+		return count; 
+		 
+	}
 
 	public void on() throws Exception
 	{
 		Scanner input = new Scanner(System.in);
-		
+
 		while(true)
 		{
 			System.out.print("=> ");
@@ -60,12 +85,16 @@ public class reversepolish
 					temp.push(this.theStack.pop());
 				}
 				while(!temp.isEmpty())
-					{
+				{
 					int num = temp.pop(); 
 					System.out.println(num);
 					this.theStack.push(num);
-					
+
 				}
+			}
+			else if(val.equalsIgnoreCase("sum"))
+			{
+				this.sum(); 
 				
 			}
 			else if(this.isNumber(val))
@@ -76,14 +105,12 @@ public class reversepolish
 			{
 				int num1 = this.theStack.pop();
 				int num2 = this.theStack.pop();
-				while(val.equalsIgnoreCase("sum"))
-				{
+
 				if(val.equals("+"))
 				{
 					this.theStack.push(num1 + num2); 
 				}
-				}
-				if(val.equals("-"))
+				else if(val.equals("-"))
 				{
 					this.theStack.push(num1 - num2);
 				}
@@ -95,16 +122,15 @@ public class reversepolish
 				{
 					this.theStack.push(num1 / num2);
 				}
-			}
-			else
-			{
-				System.out.println("Illegal Input");
+				else
+				{
+					System.out.println("Illegal Input");
+				}
+
 			}
 
-				System.out.println(val);
-			
 		}
-			
+
 	}
 
 }
