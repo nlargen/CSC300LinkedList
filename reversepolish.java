@@ -46,21 +46,13 @@ public class reversepolish
 		return sum; 
 		
 	}
-	public int stacksize() throws Exception
+	public void clear() throws Exception
 	{
-		stack temp = new stack(); 
-		do
+		while(!this.theStack.isEmpty())
 		{
-			
-			temp.push(this.theStack.pop());
-			count++;
-			 
+			this.theStack.pop(); 
 		}
-		while(!this.theStack.isEmpty());
-		return count; 
-		 
 	}
-
 	public void on() throws Exception
 	{
 		Scanner input = new Scanner(System.in);
@@ -92,6 +84,10 @@ public class reversepolish
 					this.theStack.push(num);
 
 				}
+			}
+			else if(val.equalsIgnoreCase("clear"))
+			{
+				this.clear();
 			}
 			else if(val.equalsIgnoreCase("sum"))
 			{
