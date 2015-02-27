@@ -33,16 +33,17 @@ public class reversepolish
 		String map = "+-*/";
 		return map.indexOf(s) != -1 && s.length() == 1; 
 	}
-	public void sum() throws Exception 
+	public int sum() throws Exception 
 	{
-
-		for(int i = 0; i < this.stacksize()-1; i++)
+		int sum = 0; 
+		while(!this.theStack.isEmpty())
 		{
+			
 			int num1 = this.theStack.pop();
-			int num2 = this.theStack.pop();
-			this.theStack.push(num1 + num2);
+			 sum = sum + num1; 
+			
 		}
-		System.out.println(this.theStack.peek());
+		return sum; 
 		
 	}
 	public int stacksize() throws Exception
@@ -94,7 +95,7 @@ public class reversepolish
 			}
 			else if(val.equalsIgnoreCase("sum"))
 			{
-				this.sum(); 
+				System.out.println(this.sum()); 
 				
 			}
 			else if(this.isNumber(val))
