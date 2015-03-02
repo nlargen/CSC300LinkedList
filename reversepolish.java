@@ -9,6 +9,7 @@ public class reversepolish
 
 	private stack theStack; 
 	private int count; 
+	private int sum; 
 
 	public reversepolish()
 	{
@@ -35,13 +36,13 @@ public class reversepolish
 	}
 	public int sum() throws Exception 
 	{
-		int sum = 0; 
+		int total = 0;
 		while(!this.theStack.isEmpty())
 		{
-			
-			int num1 = this.theStack.pop();
-			 sum = sum + num1; 
-			
+		 
+		int num1 = this.theStack.pop(); 
+		total = total + num1;
+		sum = total; 
 		}
 		return sum; 
 		
@@ -50,7 +51,8 @@ public class reversepolish
 	{
 		while(!this.theStack.isEmpty())
 		{
-			this.theStack.pop(); 
+			this.theStack.pop();
+			sum = 0; 
 		}
 	}
 	public void on() throws Exception
@@ -91,7 +93,8 @@ public class reversepolish
 			}
 			else if(val.equalsIgnoreCase("sum"))
 			{
-				System.out.println(this.sum()); 
+				this.theStack.push(this.sum());
+				System.out.println(this.theStack.peek()); 
 				
 			}
 			else if(this.isNumber(val))
