@@ -8,7 +8,6 @@ public class reversepolish
 {
 
 	private stack theStack; 
-	private int count; 
 	private int sum; 
 
 	public reversepolish()
@@ -61,7 +60,7 @@ public class reversepolish
 
 		while(true)
 		{
-			System.out.print("=> ");
+			System.out.print("Enter a value  =>");
 			String val = input.nextLine().trim(); 
 			if(val.equalsIgnoreCase("quit"))
 			{
@@ -86,6 +85,19 @@ public class reversepolish
 					this.theStack.push(num);
 
 				}
+			}
+			else if(val.equalsIgnoreCase("help"))
+			{
+				System.out.println("show: Lists all values in the stack.");
+				System.out.println("quit: Quits the program. ");
+				System.out.println("removelast: Removes the last value pushed onto the stack");
+				System.out.println("clear: Clears out the existing running sum");
+				System.out.println("sum: Sums all items in the stack");
+				System.out.println("+-*/  : Performs the associated math operation."); 
+			}
+			else if(val.equalsIgnoreCase("removelast"))
+			{
+				this.theStack.pop(); 
 			}
 			else if(val.equalsIgnoreCase("clear"))
 			{
@@ -112,7 +124,7 @@ public class reversepolish
 				}
 				else if(val.equals("-"))
 				{
-					this.theStack.push(num1 - num2);
+					this.theStack.push(num2 - num1);
 				}
 				else if(val.equals("*"))
 				{
