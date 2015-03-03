@@ -113,6 +113,26 @@ public class reversepolish
 			{
 				this.theStack.push(Integer.parseInt(val)); 
 			}
+			else if(val.equalsIgnoreCase("avg"))
+			{
+				int sum = 0;
+				int count = 0; 
+				int tempnum; 
+				stack tempStack = new stack(); 
+				while(!this.theStack.isEmpty())
+				{
+					tempnum = this.theStack.pop(); 
+					sum += tempnum;
+					tempStack.push(tempnum);
+					count++; 
+				}
+				while(!tempStack.isEmpty())
+				{
+					this.theStack.push(tempStack.pop());
+				}
+				this.theStack.push(sum/count);
+				
+			}
 			else if(this.isOperator(val))
 			{
 				int num1 = this.theStack.pop();
@@ -124,7 +144,7 @@ public class reversepolish
 				}
 				else if(val.equals("-"))
 				{
-					this.theStack.push(num2 - num1);
+					this.theStack.push(num1 - num2);
 				}
 				else if(val.equals("*"))
 				{
